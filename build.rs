@@ -19,9 +19,17 @@ fn build_raknet() {
     let root_dir = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap());
     let raknet_dir = root_dir.join("raknet-c");
     let mut build = cmake::Config::new(&raknet_dir);
+
+    let cat_audit = if std::env::var("CARGO_FEATURE_CAT_AUDIT").is_ok() {
+        "TRUE"
+    } else {
+        "FALSE"
+    };
+
     let dst = build
         .define("RAKNET_ENABLE_SAMPLES", "FALSE")
         .define("RAKNET_ENABLE_DLL", "FALSE")
+        .define("RAKNET_CAT_AUDIT", cat_audit)
         .build();
 
     println!("cargo:rustc-link-lib=stdc++");

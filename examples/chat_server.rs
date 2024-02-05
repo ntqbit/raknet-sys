@@ -15,7 +15,7 @@ fn main() {
     server.SetUnreliableTimeout(Duration::from_secs(1));
     server.SetTimeoutTime(Duration::from_secs(30), SystemAddress::unassigned());
 
-    let handshake = ClientEasyHandshake::new();
+    let mut handshake = ClientEasyHandshake::new();
     let Some((public_key, private_key)) = handshake.GenerateServerKey() else {
         println!("Failed to generate server key.");
         return;

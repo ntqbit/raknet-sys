@@ -8,3 +8,6 @@ edition = "2021"
 [build-dependencies]
 bindgen = "0.69.1"
 cmake = "0.1.50"
+
+[features]
+cat_audit = []
